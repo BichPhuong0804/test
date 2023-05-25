@@ -24,6 +24,8 @@ jobs:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
+      - name: Generate settings.xml for Maven Builds
+          uses: whelk-io/maven-settings-xml-action@v21
       - name: Cache Maven packages
         uses: actions/cache@v1
         with:
