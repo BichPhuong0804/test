@@ -25,7 +25,21 @@ jobs:
           key: ${{ runner.os }}-sonar
           restore-keys: ${{ runner.os }}-sonar
       - name: Generate settings.xml for Maven Builds
-          uses: whelk-io/maven-settings-xml-action@v21
+        uses: whelk-io/maven-settings-xml-action@v21
+        with:
+          settings-xml: |
+            <settings>
+              <proxies>
+                <proxy>
+                  <id>my-proxy</id>
+                  <active>true</active>
+                  <protocol>http</protocol>
+                  <host>10.61.60.105</host>
+                  <port>8080</port>
+                  <nonProxyHosts>localhost|127.0.0.1</nonProxyHosts>
+                </proxy>
+            </proxies>
+            </settings>
       - name: Cache Maven packages
         uses: actions/cache@v1
         with:
